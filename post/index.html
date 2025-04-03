@@ -2,12 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
+    <title>WIRES - Edit Post</title>
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
     <script type="module" src="/src/app.js"></script>
   </head>
   <body>
-    <h1>Post Page</h1>
+    <div class="container post-container">
+      <h2>Edit Post</h2>
+      <form id="edit-post-form" name="editPost">
+        <div class="form-group">
+          <textarea name="content" placeholder="Edit your post..." required>Existing post content</textarea>
+        </div>
+        <div class="form-group">
+          <label for="upload">Update Image:</label>
+          <input type="file" id="upload" name="upload" accept="image/*" />
+        </div>
+        <button type="submit" class="btn">Save Changes</button>
+      </form>
+    </div>
+    <nav class="navbar">
+      <a href="/pages/feed/index.html">Feed</a>
+      <a href="/profile/index.html">Profile</a>
+    </nav>
   </body>
 </html>

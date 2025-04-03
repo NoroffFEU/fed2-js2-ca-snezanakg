@@ -1,1 +1,205 @@
 @import url(_reset.css);
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f5f5f5;
+    color: #333;
+  }
+  
+  /* Container Styles */
+  .container {
+    max-width: 500px;
+    margin: 80px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Specific for Auth Pages (Login/Signup) */
+  .auth-container {
+    max-width: 400px;
+  }
+  
+  /* Logo Section */
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo img {
+    max-width: 200px;
+    /* Adjust size as needed */
+  }
+  
+  /* Form Styles */
+  form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 10px;
+    background: #2D8CFF;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background: #1a6fb3;
+  }
+  
+  /* Link Styles */
+  .link {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .link a {
+    color: #2D8CFF;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Navbar for Bottom Navigation */
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #fff;
+    padding: 10px 0;
+    box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: #2D8CFF;
+    font-weight: bold;
+  }
+  
+  /* Post Card Styles (for Feed and Profile) */
+  .post-card {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .post-card img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  
+  /* Profile Page Specific */
+  .profile-container {
+    max-width: 600px;
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-header .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  
+  .profile-header h2 {
+    margin: 10px 0 5px;
+    font-size: 24px;
+  }
+  
+  .profile-header .bio {
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .profile-btn {
+    margin-top: 10px;
+    background: #2D8CFF;
+    border: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .profile-btn:hover {
+    background: #1a6fb3;
+  }
+  
+  /* Post Container for Create/Edit Pages */
+  .post-container {
+    max-width: 600px;
+  }
+  /* Post View Container */
+.post-view-container {
+  max-width: 600px;
+  margin: 80px auto 100px; /* extra bottom space for navbar */
+}
+
+/* Comments Section */
+.comments-section {
+  background: #fff;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.comments-section h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.comment {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+/* Comment Form in Post View */
+#comment-form .form-group {
+  margin-bottom: 10px;
+}
+

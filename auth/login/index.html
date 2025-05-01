@@ -2,24 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - WIRES</title>
   <link rel="stylesheet" href="/src/css/style.css" />
 </head>
 <body>
   <div class="container auth-container">
-    <div class="logo"><img src="/public/images/LOGO.png" alt="WIRES Logo" /></div>
+    <div class="logo">
+      <img src="/public/images/LOGO.png" alt="WIRES Logo" />
+    </div>
     <form id="login-form" name="login">
       <h2>Login</h2>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="Enter your email" />
+        <input id="email" type="email" name="email" placeholder="Enter email" required />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required placeholder="Enter your password" />
+        <input id="password" type="password" name="password" placeholder="Enter password" required />
       </div>
-      <button class="btn" type="submit">Login</button>
+      <button type="submit" class="btn">Login</button>
       <p class="link">Don't have an account? <a href="/auth/register.html">Register</a></p>
     </form>
   </div>

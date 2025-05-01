@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profile - WIRES</title>
   <link rel="stylesheet" href="/src/css/style.css" />
+  <script type="module" src="/src/js/profile/index.js"></script>
 </head>
 <body>
   <div class="container profile-container">
     <div class="profile-header">
       <img src="/public/images/rainbow-roses.png" alt="User Avatar" class="avatar" />
-      <h2>Username</h2>
+      <h2 id="profile-name">Username</h2>
       <p class="bio">This is your bio. Update it in settings.</p>
       <button class="btn profile-btn">Edit Profile</button>
+      <button class="btn" id="logout-btn">Logout</button>
     </div>
+
     <div class="posts">
       <div class="post-card">
         <h3>Post Title</h3>
@@ -27,6 +30,7 @@
       </div>
     </div>
   </div>
+
   <nav class="navbar">
     <a href="/pages/feed/index.html">Feed</a>
     <a href="/post/create/index.html">New Post</a>

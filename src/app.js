@@ -83,3 +83,7 @@ if (postsContainer) {
 
 //add more event listeners for creating, editing, or deleting posts similarly.
 
+import "./src/css/style.css";
+import router from "./src/js/router";
+
+await router(window.location.pathname);

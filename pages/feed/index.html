@@ -1,50 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WIRES - Feed</title>
-    <link rel="stylesheet" href="/src/css/style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <script type="module" src="/src/app.js"></script>
-  </head>
-  <body>
-    <div class="container feed-container">
-      <header class="feed-header">
-        <!-- Logo Section -->
-        <div class="logo">
-          <img src="/public/images/LOGO.png" alt="WIRES Logo" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WIRES - Feed</title>
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
+<body>
+  <div class="container feed-container">
+    <header class="feed-header" style="background-image: url('/public/images/aurura5.png')">
+      <div class="logo"><img src="/public/images/LOGO.png" alt="WIRES Logo" /></div>
+      <h2>Feed</h2>
+      <input type="text" placeholder="Search posts..." class="search-bar" />
+    </header>
+
+    <div class="posts">
+      <div class="post-card">
+        <div class="post-user">
+          <img src="/public/images/aurora10.png" alt="User Avatar" class="avatar" />
+          <span class="username">User1</span>
         </div>
-        <h2>Feed</h2>
-        <!-- Search Bar -->
-        <div class="search-container">
-          <input type="text" placeholder="Search posts..." id="search" />
+        <p>Lorem ipsum dolor sit amet.</p>
+        <img src="/public/images/black-rose.png" alt="Post Image" />
+      </div>
+      <div class="post-card">
+        <div class="post-user">
+          <img src="/public/images/ppl.png" alt="User Avatar" class="avatar" />
+          <span class="username">User2</span>
         </div>
-      </header>
-      <!-- Posts List -->
-      <div class="posts">
-        <div class="post-card">
-          <h3>Post Title</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <img src="/assets/post-image.jpg" alt="Post Image" />
-          <p><small>Posted by <strong>User1</strong> on 2025-03-25</small></p>
-        </div>
-        <div class="post-card">
-          <h3>Another Post</h3>
-          <p>Nulla vitae elit libero, a pharetra augue.</p>
-          <img src="/assets/post-image2.jpg" alt="Post Image" />
-          <p><small>Posted by <strong>User2</strong> on 2025-03-25</small></p>
-        </div>
+        <p>Vivamus luctus urna sed urna ultricies.</p>
+        <img src="/public/images/white-rose.png" alt="Post Image" />
       </div>
     </div>
-    <!-- Bottom Navigation -->
-    <nav class="navbar">
-      <a href="/pages/feed/index.html">Feed</a>
-      <a href="/post/create/index.html">New Post</a>
-      <a href="/profile/index.html">Profile</a>
-    </nav>
-  </body>
+  </div>
+  <nav class="navbar">
+    <a href="/pages/feed/index.html">Feed</a>
+    <a href="/post/create/index.html">New Post</a>
+    <a href="/profile/index.html">Profile</a>
+  </nav>
+</body>
 </html>

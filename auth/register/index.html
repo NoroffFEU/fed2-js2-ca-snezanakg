@@ -1,55 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noroff FED2 JS2 CA</title>
-    <script type="module" src="/src/app.js"></script>
-  </head>
-
-  <body>
-    <h1>Register</h1>
-
-    <form name="register">
-      <div>
-        <label for="name">Name</label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          required
-          maxlength="20"
-          pattern="^[\w]+$"
-          title="Please enter a username using only letters and numbers"
-        />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - WIRES</title>
+  <link rel="stylesheet" href="/src/css/style.css" />
+</head>
+<body>
+  <div class="container auth-container">
+    <div class="logo"><img src="/public/images/LOGO.png" alt="WIRES Logo" /></div>
+    <form id="register-form" name="register">
+      <h2>Register</h2>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
       </div>
-
-      <div>
+      <div class="form-group">
         <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          required
-          pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
-          title="Please enter a valid noroff.no or stud.noroff.no address"
-        />
+        <input type="email" id="email" name="email" required />
       </div>
-
-      <div>
+      <div class="form-group">
         <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          minlength="8"
-        />
+        <input type="password" id="password" name="password" required />
       </div>
-
-      <a href="/auth/login/">Login</a>
-      <button>Register</button>
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required />
+      </div>
+      <button class="btn" type="submit">Register</button>
+      <p class="link">Already have an account? <a href="/auth/login/index.html">Login</a></p>
     </form>
-  </body>
+  </div>
+</body>
 </html>

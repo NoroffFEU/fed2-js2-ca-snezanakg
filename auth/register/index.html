@@ -32,7 +32,13 @@
         <input id="confirm-password" type="password" name="confirm-password" placeholder="Confirm password" required />
       </div>
       <button type="submit" class="btn">Register</button>
-      <p class="link">Already have an account? <a href="/auth/login.html">Login</a></p>
+      <p class="link">Already have an account? <a href="/auth/login.html">Login</a></p> 
+      <button id="logout-btn">Logout</button>
+<script type="module">
+  import { setLogoutListener } from "/src/js/logout.js";
+  setLogoutListener();
+</script>
+
     </form>
   </div>
 </body>

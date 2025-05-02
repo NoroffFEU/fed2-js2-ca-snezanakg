@@ -15,4 +15,14 @@ export async function onLogin(event) {
   } catch (error) {
     alert("Login error: " + error.message);
   }
-}
+} 
+fetch("https://v2.api.noroff.dev/auth/register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    name: "myname",
+    email: "myname@stud.noroff.no",
+    password: "Password123"
+  })
+}).then(res => res.json()).then(console.log).catch(console.error);
+

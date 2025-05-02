@@ -1,4 +1,4 @@
-import { loginUser } from "./ui/auth/auth.js"; // Correct path 
+import { loginUser } from "./src/js/ui/auth/auth.js"; // Correct path 
 
 /**
  * Handles user login

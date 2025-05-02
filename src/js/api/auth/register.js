@@ -9,24 +9,29 @@ registerForm.addEventListener("submit", async (e) => {
   const password = registerForm.password.value;
   const confirm = registerForm["confirm-password"].value;
 
-  // Passwords match check
+  // Check if passwords match
   if (password !== confirm) {
-    registerMsg.innerHTML = `<p style='color: red;'>Passwords do not match</p>`;
+    registerMsg.innerHTML = `<p style="color: red;">Passwords do not match</p>`;
     return;
   }
 
-  // Username check
+  // Validate username
   const validUsername = /^[\w]+$/.test(username);
   if (!validUsername) {
-    registerMsg.innerHTML = `<p style='color: red;'>Username must be letters, numbers or underscores only</p>`;
+    registerMsg.innerHTML = `<p style="color: red;">Username can only contain letters, numbers and underscores</p>`;
     return;
   }
 
+  //Send request to Noroff Auth API
   try {
     const res = await fetch("https://v2.api.noroff.dev/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: username, email, password }),
+      body: JSON.stringify({
+        name: username,
+        email,
+        password,
+      }),
     });
 
     const data = await res.json();
@@ -35,9 +40,12 @@ registerForm.addEventListener("submit", async (e) => {
       throw new Error(data.errors?.[0]?.message || "Registration failed");
     }
 
-    registerMsg.innerHTML = `<p style='color: green;'>Account created! Redirecting to login...</p>`;
-    setTimeout(() => window.location.href = "/auth/login/index.html", 2000);
+    //Success message and redirect
+    registerMsg.innerHTML = `<p style="color: green;">Account created! Redirecting to login...</p>`;
+    setTimeout(() => {
+      window.location.href = "/auth/login/index.html";
+    }, 2000);
   } catch (err) {
-    registerMsg.innerHTML = `<p style='color: red;'>${err.message}</p>`;
+    registerMsg.innerHTML = `<p style="color: red;">${err.message}</p>`;
   }
 });

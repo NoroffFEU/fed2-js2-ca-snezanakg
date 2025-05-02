@@ -10,11 +10,12 @@ export async function onLogin(event) {
 
   try {
     const result = await loginUser({ email, password });
+
     localStorage.setItem("token", result.accessToken);
     localStorage.setItem("username", result.name);
 
     if (messageBox) {
-      messageBox.innerHTML = `<p style='color: green;'>Login successful! Redirecting...</p>`;
+      messageBox.innerHTML = `<p style="color: green;">Login successful! Redirecting...</p>`;
     }
 
     setTimeout(() => {
@@ -22,7 +23,7 @@ export async function onLogin(event) {
     }, 1500);
   } catch (error) {
     if (messageBox) {
-      messageBox.innerHTML = `<p style='color: red;'>${error.message}</p>`;
+      messageBox.innerHTML = `<p style="color: red;">${error.message}</p>`;
     } else {
       alert("Login error: " + error.message);
     }

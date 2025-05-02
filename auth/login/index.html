@@ -8,31 +8,37 @@
 </head>
 <body>
   <div class="container auth-container">
+    <!-- Logo -->
     <div class="logo">
       <img src="/public/images/LOGO.png" alt="WIRES Logo" />
     </div>
 
+    <!-- Login Form -->
     <form id="login-form" name="login">
       <h2>Login</h2>
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" required />
+        <input id="email" type="email" name="email" placeholder="Enter your email" required />
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input id="password" type="password" name="password" required />
+        <input id="password" type="password" name="password" placeholder="Enter your password" required />
       </div>
 
+      <!-- Message feedback area -->
       <div id="message" class="form-group"></div>
 
       <button type="submit" class="btn">Login</button>
 
-      <p class="link">Don't have an account? <a href="/auth/register/index.html">Register</a></p>
+      <p class="link">
+        Don't have an account? <a href="/auth/register/index.html">Register</a>
+      </p>
     </form>
   </div>
 
+  <!-- JS Logic -->
   <script type="module">
     import { onLogin } from "/src/js/ui/auth/login.js";
     const form = document.forms.login;

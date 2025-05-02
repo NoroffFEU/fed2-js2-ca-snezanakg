@@ -18,5 +18,15 @@
       <a class="btn" href="/auth/register.html">Register</a>
     </div>
   </div>
+  <script type="module">
+    import { onLogin } from "/src/js/ui/auth/login.js";
+  
+    const form = document.forms.login;
+  
+    if (form) {
+      form.addEventListener("submit", onLogin);
+    }
+  </script>
+  
 </body>
 </html>

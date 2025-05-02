@@ -1,29 +1,30 @@
-const loginForm = document.getElementById("login-form");
-const messageBox = document.getElementById("message");
+import { loginUser } from "../auth.js";
 
-loginForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = loginForm.email.value;
-  const password = loginForm.password.value;
+export async function onLogin(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const email = form.email.value.trim().toLowerCase();
+  const password = form.password.value;
+  const messageBox = document.getElementById("message");
 
   try {
-    const res = await fetch("https://v2.api.noroff.dev/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    const result = await loginUser({ email, password });
+    localStorage.setItem("token", result.accessToken);
+    localStorage.setItem("username", result.name);
 
-    if (!res.ok) throw new Error("Invalid email or password");
+    if (messageBox) {
+      messageBox.innerHTML = `<p style='color: green;'>Login successful! Redirecting...</p>`;
+    }
 
-    const data = await res.json();
-    localStorage.setItem("token", data.accessToken);
-    localStorage.setItem("username", data.name);
-
-    messageBox.innerHTML = `<p style='color: green;'>Login successful. Redirecting...</p>`;
     setTimeout(() => {
       window.location.href = "/pages/feed/index.html";
-    }, 1000);
-  } catch (err) {
-    messageBox.innerHTML = `<p style='color: red;'>${err.message}</p>`;
+    }, 1500);
+  } catch (error) {
+    if (messageBox) {
+      messageBox.innerHTML = `<p style='color: red;'>${error.message}</p>`;
+    } else {
+      alert("Login error: " + error.message);
+    }
   }
-});
+}

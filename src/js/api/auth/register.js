@@ -1,19 +1,11 @@
-export async function register({
-  name,
-  email,
-  password,
-  bio,
-  banner,
-  avatar,
-}) {}
 const registerForm = document.getElementById("register-form");
 const registerMsg = document.getElementById("message");
 
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const username = registerForm.username.value;
-  const email = registerForm.email.value;
+  const username = registerForm.username.value.trim();
+  const email = registerForm.email.value.trim().toLowerCase();
   const password = registerForm.password.value;
   const confirm = registerForm["confirm-password"].value;
 
@@ -22,17 +14,27 @@ registerForm.addEventListener("submit", async (e) => {
     return;
   }
 
+  const validUsername = /^[\w]+$/.test(username);
+  if (!validUsername) {
+    registerMsg.innerHTML = `<p style='color: red;'>Username must contain only letters, numbers, and underscores</p>`;
+    return;
+  }
+
   try {
     const res = await fetch("https://v2.api.noroff.dev/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: username, email, password })
+      body: JSON.stringify({ name: username, email, password }),
     });
 
-    if (!res.ok) throw new Error("Registration failed. Make sure email ends in @noroff.no or @stud.noroff.no");
+    const data = await res.json();
 
-    registerMsg.innerHTML = `<p style='color: green;'>Account created! Redirecting to login...</p>`;
-    setTimeout(() => window.location.href = "/src/js/api/auth/login.js", 2000);
+    if (!res.ok) {
+      throw new Error(data.errors?.[0]?.message || "Registration failed.");
+    }
+
+    registerMsg.innerHTML = `<p style='color: green;'>Account created! Redirecting...</p>`;
+    setTimeout(() => window.location.href = "/auth/login/index.html", 2000);
   } catch (err) {
     registerMsg.innerHTML = `<p style='color: red;'>${err.message}</p>`;
   }

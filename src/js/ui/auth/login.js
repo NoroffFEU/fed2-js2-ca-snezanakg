@@ -1,8 +1,8 @@
-import { loginUser } from "../../../api/auth/login.js";
+import { loginUser } from "../../api/auth/auth.js";
 
 /**
- * Handles user login
- * @param {Event} event - The form submit event
+ * Handle login form submission
+ * @param {Event} event 
  */
 export async function onLogin(event) {
   event.preventDefault();
@@ -13,30 +13,20 @@ export async function onLogin(event) {
   const messageBox = document.getElementById("message");
 
   if (!email || !password) {
-    if (messageBox) {
-      messageBox.innerHTML = `<p style="color: red;">Please enter both email and password.</p>`;
-    }
-    return;
+    return (messageBox.innerHTML = `<p style="color: red;">Email and password are required.</p>`);
   }
 
   try {
-    const result = await loginUser({ email, password });
+    const { accessToken, name } = await loginUser({ email, password });
 
-    localStorage.setItem("token", result.accessToken);
-    localStorage.setItem("username", result.name);
+    localStorage.setItem("token", accessToken);
+    localStorage.setItem("username", name);
 
-    if (messageBox) {
-      messageBox.innerHTML = `<p style="color: green;">Login successful! Redirecting...</p>`;
-    }
-
+    messageBox.innerHTML = `<p style='color: green;'>Login successful! Redirecting...</p>`;
     setTimeout(() => {
       window.location.href = "/pages/feed/index.html";
     }, 1500);
-  } catch (error) {
-    if (messageBox) {
-      messageBox.innerHTML = `<p style="color: red;">${error.message}</p>`;
-    } else {
-      alert("Login error: " + error.message);
-    }
+  } catch (err) {
+    messageBox.innerHTML = `<p style='color: red;'>${err.message}</p>`;
   }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - WIRES</title>
   <link rel="stylesheet" href="/src/css/style.css" />
 </head>
@@ -14,7 +14,6 @@
 
     <form id="login-form" name="login">
       <h2>Login</h2>
-
       <div class="form-group">
         <label for="email">Email</label>
         <input id="email" type="email" name="email" placeholder="Enter your email" required />
@@ -35,19 +34,17 @@
     </form>
   </div>
 
-  <!-- JS Logic with debug -->
   <script type="module">
-    import { onLogin } from "/src/js/api/auth/login.js";
-
-    console.log("✅ Script loaded");
+    import { onLogin } from '/src/js/login.js';
 
     const form = document.forms.login;
+    console.log('✅ Script loaded');
 
     if (form) {
-      console.log("✅ Login form found");
-      form.addEventListener("submit", onLogin);
+      console.log('✅ Login form found');
+      form.addEventListener('submit', onLogin);
     } else {
-      console.warn("❌ Login form NOT found");
+      console.warn('❌ Login form NOT found');
     }
   </script>
 </body>

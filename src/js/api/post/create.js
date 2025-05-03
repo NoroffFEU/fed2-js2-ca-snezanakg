@@ -1,16 +1,19 @@
-export async function createPost({ title, body, tags, media }) {}
-import { API_SOCIAL_POSTS } from "../src/js/api/constants.js";
-import { headers } from "../src/js/api/headers.js";
+export async function createPost(title, body = "") {
+  const token = localStorage.getItem("token");
 
-/**
- * Create a new post.
- */
-export async function createPost({ title, body, tags = [], media }) {
-  const res = await fetch(API_SOCIAL_POSTS, {
+  const response = await fetch("https://v2.api.noroff.dev/social/posts", {
     method: "POST",
-    headers: headers(true),
-    body: JSON.stringify({ title, body, tags, media }),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ title, body }),
   });
-  if (!res.ok) throw new Error("Could not create post");
-  return await res.json();
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.errors?.[0]?.message || "Failed to create post");
+  }
+
+  return await response.json();
 }

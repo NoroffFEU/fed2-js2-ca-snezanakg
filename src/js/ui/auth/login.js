@@ -1,32 +1,20 @@
-import { loginUser } from "../../api/auth/auth.js";
+gimport { loginUser } from "../../../api/auth/login.js";
 
-/**
- * Handle login form submission
- * @param {Event} event 
- */
-export async function onLogin(event) {
-  event.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
+  const errorDisplay = document.getElementById("loginError");
 
-  const form = event.target;
-  const email = form.email.value.trim().toLowerCase();
-  const password = form.password.value;
-  const messageBox = document.getElementById("message");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  if (!email || !password) {
-    return (messageBox.innerHTML = `<p style="color: red;">Email and password are required.</p>`);
-  }
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-  try {
-    const { accessToken, name } = await loginUser({ email, password });
-
-    localStorage.setItem("token", accessToken);
-    localStorage.setItem("username", name);
-
-    messageBox.innerHTML = `<p style='color: green;'>Login successful! Redirecting...</p>`;
-    setTimeout(() => {
-      window.location.href = "/pages/feed/index.html";
-    }, 1500);
-  } catch (err) {
-    messageBox.innerHTML = `<p style='color: red;'>${err.message}</p>`;
-  }
-}
+    try {
+      await loginUser(email, password);
+      window.location.href = "/pages/feed/index.html"; // ✅ FIXED PATH
+    } catch (err) {
+      errorDisplay.textContent = err.message;
+    }
+  });
+});

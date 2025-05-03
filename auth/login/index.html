@@ -12,8 +12,9 @@
       <img src="/public/images/LOGO.png" alt="WIRES Logo" />
     </div>
 
-    <form id="login-form" name="login">
+    <form id="loginForm" name="login">
       <h2>Login</h2>
+
       <div class="form-group">
         <label for="email">Email</label>
         <input id="email" type="email" name="email" placeholder="Enter your email" required />
@@ -24,11 +25,9 @@
         <input id="password" type="password" name="password" placeholder="Enter your password" required />
       </div>
 
-      <div id="message" class="form-group"></div>
+      <div id="loginError" class="form-group"></div>
 
       <button type="submit" class="btn">Login</button>
-      <button id="logoutBtn">Logout</button>
-
 
       <p class="link">
         Don't have an account? <a href="/auth/register/index.html">Register</a>
@@ -36,18 +35,7 @@
     </form>
   </div>
 
-  <script type="module">
-    import { onLogin } from '/src/js/login.js';
 
-    const form = document.forms.login;
-    console.log('✅ Script loaded');
-
-    if (form) {
-      console.log('✅ Login form found');
-      form.addEventListener('submit', onLogin);
-    } else {
-      console.warn('❌ Login form NOT found');
-    }
-  </script>
+  <script type="module" src="/src/js/ui/auth/login.js"></script>
 </body>
 </html>

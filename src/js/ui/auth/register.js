@@ -22,8 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
    
+    let data = null;
+
     try {
-      data = await response.json();
+      const resBody = await response.text();
+      data = resBody ? JSON.parse(resBody) : {};
     } catch {
       throw new Error("❌ Could not parse server response.");
     }
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!response.ok) {
       throw new Error(data?.errors?.[0]?.message || "Registration failed");
     }
+    
     
 
       const data = await response.json();

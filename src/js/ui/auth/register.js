@@ -21,12 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    let data;
     try {
-      const response = await fetch("https://v2.api.noroff.dev/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, avatar }),
-      });
+      data = await response.json();
+    } catch {
+      throw new Error("❌ Could not parse server response.");
+    }
+    
+    if (!response.ok) {
+      throw new Error(data?.errors?.[0]?.message || "Registration failed");
+    }
+    
 
       const data = await response.json();
 
@@ -42,4 +47,3 @@ document.addEventListener("DOMContentLoaded", () => {
       errorDisplay.textContent = err.message;
     }
   });
-});

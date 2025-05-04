@@ -30,10 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ name, email, password, avatar }),
       });
 
-      const resText = await response.text();
-      console.log("📩 Raw response text:", resText);
-
-      const parsed = resText ? JSON.parse(resText) : {};
+      let parsed = {};
+      try {
+        parsed = await response.json();
+        console.log("📨 Parsed response:", parsed);
+      } catch {
+        throw new Error("❌ Could not parse JSON from server.");
+      }
+      
       console.log("📨 Parsed response:", parsed);
       console.log("✅ Response OK?", response.ok);
 

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    let data;
+   
     try {
       data = await response.json();
     } catch {

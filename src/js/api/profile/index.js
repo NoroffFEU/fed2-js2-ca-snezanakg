@@ -1,21 +1,20 @@
-import { authGuard } from "../authGuard.js";
-import { setLogoutListener } from "../logout.js";
-import { readProfile } from "./read.js";
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const avatar = user?.avatar || "https://placekitten.com/200/200";
 
-authGuard();
-
-document.addEventListener("DOMContentLoaded", async () => {
-  const name = localStorage.getItem("username") || "User";
-  const nameField = document.getElementById("profile-name");
-  if (nameField) nameField.textContent = name;
-
-  setLogoutListener();
-
-  try {
-    const profile = await readProfile(name);
-    console.log("Profile loaded:", profile);
-    // Optional: display profile data (avatar, banner, bio, etc.)
-  } catch (error) {
-    console.error("Failed to load profile", error);
+  if (!user) {
+    window.location.href = "/login.html";
+    return;
   }
+
+  document.getElementById("profile-name").textContent = user.name;
+  document.getElementById("profile-email").textContent = user.email;
+  document.getElementById("profile-avatar").src = avatar;
+
+  const logoutBtn = document.getElementById("logout-btn");
+  logoutBtn.addEventListener("click", () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
+    window.location.href = "/login.html";
+  });
 });

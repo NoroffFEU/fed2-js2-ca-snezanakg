@@ -21,29 +21,21 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-   
-    let data = null;
-
     try {
-      const resBody = await response.text();
-      data = resBody ? JSON.parse(resBody) : {};
-    } catch {
-      throw new Error("❌ Could not parse server response.");
-    }
-    
-    if (!response.ok) {
-      throw new Error(data?.errors?.[0]?.message || "Registration failed");
-    }
-    
-    
+      const response = await fetch("https://v2.api.noroff.dev/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, avatar }),
+      });
 
-      const data = await response.json();
+      const resText = await response.text();
+      const parsed = resText ? JSON.parse(resText) : {};
 
       if (!response.ok) {
-        throw new Error(data.errors?.[0]?.message || "Registration failed");
+        throw new Error(parsed?.errors?.[0]?.message || "Registration failed");
       }
 
-      console.log("✅ Registered:", data);
+      console.log("✅ Registered:", parsed);
       alert("✅ Registration successful! Redirecting to login...");
       window.location.href = "/login.html";
     } catch (err) {
@@ -51,3 +43,4 @@ document.addEventListener("DOMContentLoaded", () => {
       errorDisplay.textContent = err.message;
     }
   });
+});

@@ -1,5 +1,15 @@
-export async function readPost(id) {}
+export async function fetchPosts() {
+  const token = localStorage.getItem('token');
 
-export async function readPosts(limit = 12, page = 1, tag) {}
+  const res = await fetch("https://v2.api.noroff.dev/social/posts?_author=true&_comments=true&_reactions=true", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export async function readPostsByUser(username, limit = 12, page = 1, tag) {}
+  if (!res.ok) {
+    throw new Error('Failed to fetch posts');
+  }
+
+  return await res.json();
+}

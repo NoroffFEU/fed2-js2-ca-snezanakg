@@ -1,22 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Noroff FED2 JS2 CA</title>
-  <script type="module" src="/src/app.js"></script>
+  <title>WIRES - Social Platform</title>
+  <link rel="stylesheet" href="/src/css/style.css" />
 </head>
-
 <body>
-  <img src="/images/noroff-logo.png" alt="Noroff Logo" />
-
-  <h1>Home</h1>
-
-  <a href="/profile/">My Profile</a>
-  <a href="/auth/login/">Login</a>
-  <a href="/auth/register/">Register</a>
-  <button>Logout</button>
+  <div class="container auth-container">
+    <div class="logo">
+      <img src="/public/images/LOGO.png" alt="WIRES Logo" />
+    </div>
+    <h2>Welcome to WIRES</h2>
+    <p>Connect, Share, and Explore with the community.</p>
+    <div class="btn-group">
+      <a class="btn" href="login.html">Login</a>
+      <a class="btn" href="register.html">Register</a>
+    </div>
+  </div>
+  <script type="module">
+    import { onLogin } from "/src/js/ui/auth/login.js";
+  
+    const form = document.forms.login;
+  
+    if (form) {
+      form.addEventListener("submit", onLogin);
+    }
+  </script>
+  
 </body>
 </html>

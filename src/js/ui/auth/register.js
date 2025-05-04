@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
+      console.log("📡 Sending registration request...");
+
       const response = await fetch("https://v2.api.noroff.dev/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -29,7 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const resText = await response.text();
+      console.log("📩 Raw response text:", resText);
+
       const parsed = resText ? JSON.parse(resText) : {};
+      console.log("📨 Parsed response:", parsed);
+      console.log("✅ Response OK?", response.ok);
 
       if (!response.ok) {
         throw new Error(parsed?.errors?.[0]?.message || "Registration failed");
@@ -38,9 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("✅ Registered:", parsed);
       alert("✅ Registration successful! Redirecting to login...");
       window.location.href = "/login.html";
+
     } catch (err) {
       console.error("❌ Registration error:", err);
       errorDisplay.textContent = err.message;
     }
   });
 });
+

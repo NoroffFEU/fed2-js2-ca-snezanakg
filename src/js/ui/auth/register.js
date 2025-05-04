@@ -37,18 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch {
         throw new Error("❌ Could not parse JSON from server.");
       }
-      
-      console.log("📨 Parsed response:", parsed);
+
       console.log("✅ Response OK?", response.ok);
 
       if (!response.ok) {
         const errorMessage =
-  typeof parsed === "object" && parsed.errors?.[0]?.message
-    ? parsed.errors[0].message
-    : "Registration failed";
+          typeof parsed === "object" && parsed.errors?.[0]?.message
+            ? parsed.errors[0].message
+            : "Registration failed";
 
-throw new Error(errorMessage);
-
+        throw new Error(errorMessage);
       }
 
       console.log("✅ Registered:", parsed);
@@ -61,4 +59,3 @@ throw new Error(errorMessage);
     }
   });
 });
-

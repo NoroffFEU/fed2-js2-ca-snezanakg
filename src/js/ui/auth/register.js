@@ -1,31 +1,48 @@
-import { registerUser } from "../../api/auth/auth.js";
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registerForm");
+  const errorDisplay = document.getElementById("registerError");
 
-/**
- * Handles registration form submission
- * @param {SubmitEvent} event
- */
-export async function onRegister(event) {
-  event.preventDefault();
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  const form = event.target;
-  const username = form.username.value.trim();
-  const email = form.email.value.trim().toLowerCase();
-  const password = form.password.value;
-  const confirm = form["confirm-password"].value;
-  const msgBox = document.getElementById("message");
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const password = document.getElementById("password").value.trim();
+    const avatar = document.getElementById("avatar").value.trim();
 
-  if (password !== confirm) {
-    msgBox.innerHTML = `<p style="color: red;">Passwords do not match</p>`;
-    return;
-  }
+    if (!email.endsWith("noroff.no")) {
+      errorDisplay.textContent = "Email must be a valid Noroff email address.";
+      return;
+    }
 
-  try {
-    await registerUser({ name: username, email, password });
-    msgBox.innerHTML = `<p style="color: green;">Account created! Redirecting to login...</p>`;
-    setTimeout(() => {
-      window.location.href = "/auth/login/index.html";
-    }, 1500);
-  } catch (error) {
-    msgBox.innerHTML = `<p style="color: red;">${error.message}</p>`;
-  }
-}
+    try {
+      const response = await fetch("https://v2.api.noroff.dev/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          avatar,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.errors?.[0]?.message || "Registration failed");
+      }
+
+      const data = await response.json();
+      console.log("✅ Registered:", data);
+
+      alert("Registration successful! You can now log in.");
+      window.location.href = "/login.html";
+    } catch (err) {
+      console.error("❌ Registration error:", err);
+      errorDisplay.textContent = err.message;
+    }
+  });
+});
+

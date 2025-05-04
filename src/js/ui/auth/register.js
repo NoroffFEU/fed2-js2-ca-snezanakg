@@ -42,7 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("✅ Response OK?", response.ok);
 
       if (!response.ok) {
-        throw new Error(parsed?.errors?.[0]?.message || "Registration failed");
+        const errorMessage =
+  typeof parsed === "object" && parsed.errors?.[0]?.message
+    ? parsed.errors[0].message
+    : "Registration failed";
+
+throw new Error(errorMessage);
+
       }
 
       console.log("✅ Registered:", parsed);

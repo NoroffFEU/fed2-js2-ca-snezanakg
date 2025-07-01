@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WIRES - Social Platform</title>
-  <link rel="stylesheet" href="/src/css/style.css" />
-</head>
-<body>
-  <div class="container auth-container">
-    <div class="logo">
-      <img src="/public/images/LOGO.png" alt="WIRES Logo" />
-    </div>
-    <h2>Welcome to WIRES</h2>
-    <p>Connect, Share, and Explore with the community.</p>
-    <div class="btn-group">
-      <a class="btn" href="login.html">Login</a>
-      <a class="btn" href="register.html">Register</a>
-    </div>
-  </div>
-  <script type="module">
-    import { onLogin } from "/src/js/ui/auth/login.js";
-  
-    const form = document.forms.login;
-  
-    if (form) {
-      form.addEventListener("submit", onLogin);
-    }
-  </script>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class="bg-gray-100 text-gray-900 font-sans">
+    <header class="bg-white shadow p-4">
+      <div class="max-w-4xl mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Welcome</h1>
+      </div>
+    </header>
+
+    <main class="max-w-2xl mx-auto mt-8 px-4 space-y-4">
+      <p>This is the homepage of the Social Media app.</p>
+      <ul class="list-disc ml-6">
+        <li><a href="/auth/login/index.html" class="text-blue-600 hover:underline">Login</a></li>
+        <li><a href="/auth/register/index.html" class="text-blue-600 hover:underline">Register</a></li>
+        <li><a href="/feed/index.html" class="text-blue-600 hover:underline">Feed</a></li>
+        <li><a href="/profile/index.html" class="text-blue-600 hover:underline">Profile</a></li>
+        <li><a href="/post/create/index.html" class="text-blue-600 hover:underline">Create Post</a></li>
+      </ul>
+    </main>
+
+    <script type="module" src="/src/js/router/views/home.js"></script>
+  </body>
 </html>

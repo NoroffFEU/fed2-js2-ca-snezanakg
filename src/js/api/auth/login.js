@@ -23,7 +23,7 @@ export async function onLogin(event) {
     const result = await loginUser({ email, password });
 
     // Save login info to localStorage
-    localStorage.setItem("token", result.accessToken);
+    localStorage.setItem("authToken", result.accessToken);
     localStorage.setItem("username", result.name);
 
     if (messageBox) {
@@ -31,7 +31,7 @@ export async function onLogin(event) {
     }
 
     setTimeout(() => {
-      window.location.href = "feed.html"; //Go to feed after login
+      window.location.href = "/feed/"; //Go to feed after login
     }, 1500);
   } catch (error) {
     if (messageBox) {
